@@ -17,5 +17,12 @@ cp src/library/tailwind.config.ts build-npm-package/
 rm -rf build-npm-package/node_modules
 rm -rf build-npm-package/.DS_Store
 
+# Create src directory in the package
+mkdir -p build-npm-package/src
+
+# Ensure the index file is properly copied
+cp -r src/library/*.ts build-npm-package/src/ 2>/dev/null || :
+cp -r src/library/*.tsx build-npm-package/src/ 2>/dev/null || :
+
 echo "NPM package prepared in build-npm-package directory"
-echo "To publish, run: cd build-npm-package && npm publish"
+echo "To publish, run: cd build-npm-package && npm run build && npm publish"

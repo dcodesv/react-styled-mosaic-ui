@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import path from 'path';
 
 /**
  * This is a Rollup configuration file for building the component library
@@ -11,7 +12,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
  */
 
 export default {
-  input: 'src/library/index.ts',
+  input: 'index.ts',
   output: [
     {
       file: 'dist/index.js',
@@ -45,5 +46,5 @@ export default {
       },
     }),
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'class-variance-authority', 'clsx', 'tailwind-merge', 'lucide-react'],
 };
