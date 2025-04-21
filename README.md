@@ -1,73 +1,120 @@
-# Welcome to your Lovable project
 
-## Project info
+# Modern React UI Components Library
 
-**URL**: https://lovable.dev/projects/82abc2cf-093e-4650-9ddf-972c9de5a32e
+A customizable, themeable React component library built with TailwindCSS v4, TypeScript, and inspired by shadcn/ui design principles.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Multiple Style Variants**: Choose from minimalist, outline, shadow, and filled styles for all components
+- **Theming Support**: Built-in theming capabilities with light and dark mode support
+- **Type Safety**: Fully typed with TypeScript
+- **Modern Stack**: Built with TailwindCSS v4, React 18+
+- **Flexible & Extensible**: Easy to customize and extend
 
-**Use Lovable**
+## Components
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/82abc2cf-093e-4650-9ddf-972c9de5a32e) and start prompting.
+- Button
+- Input
+- Card
+- Select
+- Modal
+- Tabs
+- Toggle
 
-Changes made via Lovable will be committed automatically to this repo.
+## Installation
 
-**Use your preferred IDE**
+```bash
+# npm
+npm install @your-org/react-ui-components
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# yarn
+yarn add @your-org/react-ui-components
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# pnpm
+pnpm add @your-org/react-ui-components
 ```
 
-**Edit a file directly in GitHub**
+## Usage
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Wrap your application with the `ThemeProvider`:
 
-**Use GitHub Codespaces**
+```jsx
+import { ThemeProvider } from '@your-org/react-ui-components';
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+const App = () => {
+  return (
+    <ThemeProvider defaultTheme="light" defaultVariant="outline">
+      <YourApp />
+    </ThemeProvider>
+  );
+};
+```
 
-## What technologies are used for this project?
+2. Import and use components:
 
-This project is built with:
+```jsx
+import { Button, Card, CardContent } from '@your-org/react-ui-components';
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+const MyComponent = () => {
+  return (
+    <Card>
+      <CardContent>
+        <h2>Hello World</h2>
+        <Button>Click Me</Button>
+      </CardContent>
+    </Card>
+  );
+};
+```
 
-## How can I deploy this project?
+3. Use the `useTheme` hook to change themes or variants:
 
-Simply open [Lovable](https://lovable.dev/projects/82abc2cf-093e-4650-9ddf-972c9de5a32e) and click on Share -> Publish.
+```jsx
+import { useTheme, Button } from '@your-org/react-ui-components';
 
-## Can I connect a custom domain to my Lovable project?
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+  
+  return (
+    <Button 
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    >
+      Toggle Theme
+    </Button>
+  );
+};
+```
 
-Yes, you can!
+## Style Variants
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+All components support four style variants:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **minimalist**: Clean, minimal styling with reduced visual elements
+- **outline**: Components with borders and transparent backgrounds
+- **shadow**: Components with subtle shadows for depth
+- **filled**: Components with solid background colors
+
+## Customization
+
+You can customize the theme colors by modifying your TailwindCSS configuration:
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        // Add your custom colors here
+      },
+    },
+  },
+};
+```
+
+## License
+
+MIT

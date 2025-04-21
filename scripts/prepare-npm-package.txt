@@ -1,0 +1,21 @@
+
+#!/bin/bash
+# Script to prepare the library for NPM publishing
+
+# Create build directory
+mkdir -p build-npm-package
+
+# Copy the library files
+cp -r src/library/* build-npm-package/
+cp package-json-for-npm.txt build-npm-package/package.json
+cp rollup.config-for-npm.js build-npm-package/rollup.config.js
+cp src/library/LICENSE build-npm-package/
+cp src/library/README.md build-npm-package/
+cp src/library/tailwind.config.ts build-npm-package/
+
+# Clean up any unnecessary files
+rm -rf build-npm-package/node_modules
+rm -rf build-npm-package/.DS_Store
+
+echo "NPM package prepared in build-npm-package directory"
+echo "To publish, run: cd build-npm-package && npm publish"
